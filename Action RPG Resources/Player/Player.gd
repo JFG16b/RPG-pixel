@@ -11,7 +11,7 @@ enum {
 	ATTACK
 }
 
-var state
+var state = MOVE
 var velocity = Vector2.ZERO
 var roll_vector = Vector2.DOWN
 
@@ -23,7 +23,7 @@ onready var swordHitbox = $HitboxPivot/SwordHitbox
 func _ready() -> void:
 	animationTree.active = true
 	swordHitbox.knockback_vector = roll_vector
-	state = MOVE
+
 
 func _physics_process(delta: float) -> void:
 	match state:
