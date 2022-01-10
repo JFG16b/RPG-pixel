@@ -1,5 +1,5 @@
 extends KinematicBody2D
-#cambiar color en funcion de la vida
+
 const EnemyDeathEffect = preload("res://Action RPG Resources/Effects/EnemyDeathEffect.tscn")
 
 export var ACCELERATION = 300

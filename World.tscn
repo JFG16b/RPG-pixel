@@ -578,13 +578,13 @@ position = Vector2( 24, 72 )
 position = Vector2( 72, 88 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat" index="0"]
-frame = 3
+frame = 1
 
 [node name="Bat2" parent="YSort/Enemys" instance=ExtResource( 7 )]
 position = Vector2( 240, 88 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat2" index="0"]
-frame = 3
+frame = 1
 
 [node name="Stats" parent="YSort/Enemys/Bat2" index="4"]
 max_health = 3
@@ -593,7 +593,7 @@ max_health = 3
 position = Vector2( 120, 168 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat3" index="0"]
-frame = 3
+frame = 1
 
 [node name="Stats" parent="YSort/Enemys/Bat3" index="4"]
 max_health = 2
@@ -602,16 +602,20 @@ max_health = 2
 position = Vector2( 152, 112 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat4" index="0"]
-frame = 3
+frame = 1
 
 [node name="Stats" parent="YSort/Enemys/Bat4" index="4"]
 max_health = 1
 
 [editable path="YSort/Enemys/Bat"]
 [editable path="YSort/Enemys/Bat/Hurtbox"]
+[editable path="YSort/Enemys/Bat/PlayerDetectionZone"]
 [editable path="YSort/Enemys/Bat2"]
 [editable path="YSort/Enemys/Bat2/Hurtbox"]
+[editable path="YSort/Enemys/Bat2/PlayerDetectionZone"]
 [editable path="YSort/Enemys/Bat3"]
 [editable path="YSort/Enemys/Bat3/Hurtbox"]
+[editable path="YSort/Enemys/Bat3/PlayerDetectionZone"]
 [editable path="YSort/Enemys/Bat4"]
 [editable path="YSort/Enemys/Bat4/Hurtbox"]
+[editable path="YSort/Enemys/Bat4/PlayerDetectionZone"]
