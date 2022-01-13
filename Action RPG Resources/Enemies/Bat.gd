@@ -3,7 +3,7 @@ extends KinematicBody2D
 const EnemyDeathEffect = preload("res://Action RPG Resources/Effects/EnemyDeathEffect.tscn")
 
 export var ACCELERATION = 300
-export var MAX_SPEED =  50
+export var MAX_SPEED = 80
 export var FRICTION = 200
 enum {
 	IDLE,
@@ -23,6 +23,8 @@ var state = CHASE
 onready var sprite = $Sprite
 onready var stats = $Stats
 onready var playerDetectionZone = $PlayerDetectionZone
+onready var hurtbox = $Hurtbox
+onready var softCollision = $SoftCollision
 
 func _ready() -> void:
 	stats.health -= 0
@@ -47,7 +49,8 @@ func _physics_process(delta: float) -> void:
 			else:
 				state = IDLE
 			sprite.flip_h = velocity.x < 0 
-	
+	if softCollision.is_colliding():
+		velocity += softCollision.get_push_vector() * delta * 400
 	velocity = move_and_slide(velocity)
 
 func seek_player():
@@ -56,7 +59,8 @@ func seek_player():
 
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	stats.health -= area.damage
-	knockback = area.knockback_vector * 120
+	knockback = area.knockback_vector * 150
+	hurtbox.create_hit_effect()
 
 
 func _on_Stats_no_health() -> void:
@@ -68,15 +72,19 @@ func _on_Stats_no_health() -> void:
 
 func _on_Stats_four_plus_health() -> void:
 	$Sprite.modulate = c_one
+	var MAX_SPEED =  110
 
 
 func _on_Stats_two_health() -> void:
 	$Sprite.modulate = c_two
+	var MAX_SPEED =  90
 
 
 func _on_Stats_one_health() -> void:
 	$Sprite.modulate = c_three
+	var MAX_SPEED =  70
 
 
 func _on_Stats_three_health() -> void:
 	$Sprite.modulate = c_four
+	var MAX_SPEED =  50
