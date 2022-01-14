@@ -12,6 +12,6 @@ func create_grass_effect():
 
 
 
-func _on_Hurtbox_area_entered(area: Area2D) -> void:
+func _on_Hurtbox_area_entered(_area) -> void:
 	create_grass_effect()
 	queue_free()
