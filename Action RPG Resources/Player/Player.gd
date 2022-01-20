@@ -8,6 +8,8 @@ export var MAX_SPEED = 100
 export var ROLL_SPEED = 150
 export var FRICTION = 350
 
+signal position
+
 enum {
 	MOVE,
 	ROLL,
@@ -32,6 +34,7 @@ func _ready() -> void:
 	swordHitbox.knockback_vector = roll_vector
 
 
+
 func _physics_process(delta: float) -> void:
 	match state:
 		MOVE:
@@ -42,6 +45,7 @@ func _physics_process(delta: float) -> void:
 	
 		ATTACK:
 			attack_state()
+	emit_signal("position", global_position)
 
 func move_state(delta):
 	
@@ -103,9 +107,7 @@ func _on_Hurtbox_area_entered(area) -> void:
 
 func _on_Stats_no_health():
 	queue_free()
-	var playerDeathEffect = PlayerDeathEffect.instance()
-	get_parent().add_child(playerDeathEffect)
-	playerDeathEffect.global_position = global_position - Vector2(5, 10)
+
 
 
 func _on_Hurtbox_invincibility_started() -> void:

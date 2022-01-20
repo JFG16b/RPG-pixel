@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Action RPG Resources/World/Bush.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Action RPG Resources/Player/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://World.gd" type="Script" id=10]
 [ext_resource path="res://Action RPG Resources/World/CaveEntrance.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Action RPG Resources/WhiteColorShader.shader" type="Shader" id=12]
+[ext_resource path="res://Action RPG Resources/Enemies/MrEyes.tscn" type="PackedScene" id=13]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -548,6 +549,16 @@ smoothing_enabled = true
 
 [node name="YSort" type="YSort" parent="."]
 
+[node name="MrEyes" parent="YSort" instance=ExtResource( 13 )]
+position = Vector2( 181.446, -76.2187 )
+
+[node name="Sprite" parent="YSort/MrEyes" index="1"]
+frame = 9
+
+[node name="TalkArea" parent="YSort/MrEyes" index="2"]
+collision_layer = 8
+collision_mask = 2
+
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 160, 40 )
 
@@ -556,9 +567,6 @@ frame = 46
 
 [node name="AnimationTree" parent="YSort/Player" index="4"]
 parameters/playback = SubResource( 50 )
-
-[node name="HitboxPivot" parent="YSort/Player" index="5"]
-rotation = 1.5708
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../Camera2D")
@@ -688,12 +696,14 @@ position = Vector2( 72, 88 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat" index="0"]
 material = SubResource( 51 )
+frame = 2
 
 [node name="Bat2" parent="YSort/Enemys" instance=ExtResource( 7 )]
 position = Vector2( 240, 88 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat2" index="0"]
 material = SubResource( 52 )
+frame = 2
 
 [node name="Stats" parent="YSort/Enemys/Bat2" index="4"]
 max_health = 3
@@ -703,6 +713,7 @@ position = Vector2( 120, 168 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat3" index="0"]
 material = SubResource( 53 )
+frame = 2
 
 [node name="Stats" parent="YSort/Enemys/Bat3" index="4"]
 max_health = 2
@@ -712,6 +723,7 @@ position = Vector2( 152, 112 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat4" index="0"]
 material = SubResource( 54 )
+frame = 2
 
 [node name="Stats" parent="YSort/Enemys/Bat4" index="4"]
 max_health = 1
@@ -721,12 +733,14 @@ position = Vector2( 105.031, 102.634 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat5" index="0"]
 material = SubResource( 55 )
+frame = 2
 
 [node name="Bat6" parent="YSort/Enemys" instance=ExtResource( 7 )]
 position = Vector2( 22.1709, 48.746 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat6" index="0"]
 material = SubResource( 56 )
+frame = 2
 
 [node name="Stats" parent="YSort/Enemys/Bat6" index="4"]
 max_health = 3
@@ -752,7 +766,10 @@ rotation = 1.5708
 
 [node name="CollisionShape2D" parent="CaveEntrance" index="1"]
 position = Vector2( 5.098, -2.65485 )
-[connection signal="resurrect" from="." to="." method="_on_World_resurrect"]
+[connection signal="body_entered" from="YSort/MrEyes/TalkArea" to="YSort/MrEyes" method="_on_TalkArea_body_entered"]
+[connection signal="body_exited" from="YSort/MrEyes/TalkArea" to="YSort/MrEyes" method="_on_TalkArea_body_exited"]
+
+[editable path="YSort/MrEyes"]
 
 [editable path="YSort/Player"]
 
