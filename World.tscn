@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Action RPG Resources/World/Bush.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Action RPG Resources/Player/Player.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Action RPG Resources/World/CaveEntrance.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Action RPG Resources/WhiteColorShader.shader" type="Shader" id=12]
 [ext_resource path="res://Action RPG Resources/Enemies/MrEyes.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Action RPG Resources/UI/DialogueInterface.tscn" type="PackedScene" id=14]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -759,6 +760,14 @@ margin_top = 6.62671
 margin_right = 68.0467
 margin_bottom = 17.6267
 
+[node name="DialogueInterface" parent="CanvasLayer" instance=ExtResource( 14 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.663414
+margin_top = 180.449
+margin_right = 0.663414
+margin_bottom = 180.449
+
 [node name="CaveEntrance" parent="." instance=ExtResource( 11 )]
 self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 165.336, -167.666 )
@@ -766,6 +775,7 @@ rotation = 1.5708
 
 [node name="CollisionShape2D" parent="CaveEntrance" index="1"]
 position = Vector2( 5.098, -2.65485 )
+[connection signal="talking" from="YSort/MrEyes" to="CanvasLayer/DialogueInterface" method="_on_MrEyes_talking"]
 [connection signal="body_entered" from="YSort/MrEyes/TalkArea" to="YSort/MrEyes" method="_on_TalkArea_body_entered"]
 [connection signal="body_exited" from="YSort/MrEyes/TalkArea" to="YSort/MrEyes" method="_on_TalkArea_body_exited"]
 

@@ -26,3 +26,7 @@ func _on_World_resurrect() -> void:
 
 func _on_MrEyes_Talking() -> void:
 	print("working")
+
+
+func _on_MrEyes_talking() -> void:
+	print("hey")

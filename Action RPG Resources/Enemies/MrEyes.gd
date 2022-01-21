@@ -12,7 +12,7 @@ enum{
 	TALK
 }
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	match state:
 		IDLE:
 			animationPlayer.play("Idle")
@@ -29,7 +29,6 @@ func _on_TalkArea_body_entered(_body: Node) -> void:
 	state = TALK
 
 func _on_TalkArea_body_exited(_body: Node) -> void:
-	animationPlayer.play("Idle")
 	state = IDLE
 
 func talk():
