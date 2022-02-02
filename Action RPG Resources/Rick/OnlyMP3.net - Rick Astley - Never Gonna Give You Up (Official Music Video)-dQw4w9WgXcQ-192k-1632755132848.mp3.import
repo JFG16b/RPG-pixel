@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/OnlyMP3.net - Rick Astley - Never Gonna Give You Up (Official Music Video)-dQw4w9WgXcQ-192k-1632755132848.mp3-a18882e0b4a23dc8413e96704c671a59.mp3str"
+
+[deps]
+
+source_file="res://Action RPG Resources/Rick/OnlyMP3.net - Rick Astley - Never Gonna Give You Up (Official Music Video)-dQw4w9WgXcQ-192k-1632755132848.mp3"
+dest_files=[ "res://.import/OnlyMP3.net - Rick Astley - Never Gonna Give You Up (Official Music Video)-dQw4w9WgXcQ-192k-1632755132848.mp3-a18882e0b4a23dc8413e96704c671a59.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

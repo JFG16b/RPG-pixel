@@ -553,18 +553,12 @@ smoothing_enabled = true
 [node name="MrEyes" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 181.446, -76.2187 )
 
-[node name="Sprite" parent="YSort/MrEyes" index="1"]
-frame = 9
-
 [node name="TalkArea" parent="YSort/MrEyes" index="2"]
 collision_layer = 8
 collision_mask = 2
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 160, 40 )
-
-[node name="Sprite" parent="YSort/Player" index="0"]
-frame = 46
 
 [node name="AnimationTree" parent="YSort/Player" index="4"]
 parameters/playback = SubResource( 50 )
@@ -697,14 +691,14 @@ position = Vector2( 72, 88 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat" index="0"]
 material = SubResource( 51 )
-frame = 3
+frame = 0
 
 [node name="Bat2" parent="YSort/Enemys" instance=ExtResource( 7 )]
 position = Vector2( 240, 88 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat2" index="0"]
 material = SubResource( 52 )
-frame = 3
+frame = 0
 
 [node name="Stats" parent="YSort/Enemys/Bat2" index="4"]
 max_health = 3
@@ -714,7 +708,7 @@ position = Vector2( 106.349, 161.174 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat3" index="0"]
 material = SubResource( 53 )
-frame = 3
+frame = 0
 
 [node name="Stats" parent="YSort/Enemys/Bat3" index="4"]
 max_health = 2
@@ -724,7 +718,7 @@ position = Vector2( 152, 112 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat4" index="0"]
 material = SubResource( 54 )
-frame = 3
+frame = 0
 
 [node name="Stats" parent="YSort/Enemys/Bat4" index="4"]
 max_health = 1
@@ -734,14 +728,14 @@ position = Vector2( 105.031, 102.634 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat5" index="0"]
 material = SubResource( 55 )
-frame = 3
+frame = 0
 
 [node name="Bat6" parent="YSort/Enemys" instance=ExtResource( 7 )]
 position = Vector2( 22.1709, 48.746 )
 
 [node name="Sprite" parent="YSort/Enemys/Bat6" index="0"]
 material = SubResource( 56 )
-frame = 3
+frame = 0
 
 [node name="Stats" parent="YSort/Enemys/Bat6" index="4"]
 max_health = 3
@@ -768,6 +762,32 @@ margin_top = 180.449
 margin_right = 0.663414
 margin_bottom = 180.449
 
+[node name="PlayerText" parent="CanvasLayer/DialogueInterface" index="0"]
+margin_top = -71.449
+margin_right = 360.0
+margin_bottom = 3.55099
+
+[node name="Name" parent="CanvasLayer/DialogueInterface/PlayerText" index="1"]
+margin_left = 217.337
+margin_top = 40.0
+margin_right = 257.337
+margin_bottom = 54.0
+
+[node name="Option1" parent="CanvasLayer/DialogueInterface" index="1"]
+margin_left = 31.0
+margin_top = -23.0
+margin_right = 360.0
+margin_bottom = -3.0
+
+[node name="Option2" parent="CanvasLayer/DialogueInterface" index="2"]
+margin_left = 30.0
+margin_top = -57.0
+margin_right = 360.0
+margin_bottom = -37.0
+
+[node name="Timer" parent="CanvasLayer/DialogueInterface" index="3"]
+wait_time = 0.001
+
 [node name="CaveEntrance" parent="." instance=ExtResource( 11 )]
 self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 165.336, -167.666 )
@@ -775,40 +795,49 @@ rotation = 1.5708
 
 [node name="CollisionShape2D" parent="CaveEntrance" index="1"]
 position = Vector2( 5.098, -2.65485 )
-[connection signal="talking" from="YSort/MrEyes" to="CanvasLayer/DialogueInterface" method="_on_MrEyes_talking"]
+
+[connection signal="angry" from="YSort/MrEyes" to="CanvasLayer/DialogueInterface" method="_on_MrEyes_angry"]
+[connection signal="talking" from="YSort/MrEyes" to="CanvasLayer/DialogueInterface/PlayerText" method="_on_MrEyes_talking"]
+[connection signal="animation_finished" from="YSort/MrEyes/AnimationPlayer" to="YSort/MrEyes" method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="YSort/MrEyes/TalkArea" to="YSort/MrEyes" method="_on_TalkArea_body_entered"]
 [connection signal="body_exited" from="YSort/MrEyes/TalkArea" to="YSort/MrEyes" method="_on_TalkArea_body_exited"]
+[connection signal="ch1" from="CanvasLayer/DialogueInterface/PlayerText" to="CanvasLayer/DialogueInterface" method="_on_PlayerText_ch1"]
+[connection signal="pressed" from="CanvasLayer/DialogueInterface/Option1" to="YSort/MrEyes" method="_on_Option1_pressed"]
 
 [editable path="YSort/MrEyes"]
-
+[editable path="YSort/MrEyes/TalkArea"]
 [editable path="YSort/Player"]
-
+[editable path="YSort/Player/HitboxPivot/SwordHitbox"]
+[editable path="YSort/Player/Hurtbox"]
 [editable path="YSort/Enemys/Bat"]
-
 [editable path="YSort/Enemys/Bat/Hurtbox"]
-
+[editable path="YSort/Enemys/Bat/Hitbox"]
 [editable path="YSort/Enemys/Bat/PlayerDetectionZone"]
-
+[editable path="YSort/Enemys/Bat/SoftCollision"]
 [editable path="YSort/Enemys/Bat2"]
-
 [editable path="YSort/Enemys/Bat2/Hurtbox"]
-
+[editable path="YSort/Enemys/Bat2/Hitbox"]
 [editable path="YSort/Enemys/Bat2/PlayerDetectionZone"]
-
+[editable path="YSort/Enemys/Bat2/SoftCollision"]
 [editable path="YSort/Enemys/Bat3"]
-
 [editable path="YSort/Enemys/Bat3/Hurtbox"]
-
+[editable path="YSort/Enemys/Bat3/Hitbox"]
 [editable path="YSort/Enemys/Bat3/PlayerDetectionZone"]
-
+[editable path="YSort/Enemys/Bat3/SoftCollision"]
 [editable path="YSort/Enemys/Bat4"]
-
 [editable path="YSort/Enemys/Bat4/Hurtbox"]
-
+[editable path="YSort/Enemys/Bat4/Hitbox"]
 [editable path="YSort/Enemys/Bat4/PlayerDetectionZone"]
-
+[editable path="YSort/Enemys/Bat4/SoftCollision"]
 [editable path="YSort/Enemys/Bat5"]
-
+[editable path="YSort/Enemys/Bat5/Hurtbox"]
+[editable path="YSort/Enemys/Bat5/Hitbox"]
+[editable path="YSort/Enemys/Bat5/PlayerDetectionZone"]
+[editable path="YSort/Enemys/Bat5/SoftCollision"]
 [editable path="YSort/Enemys/Bat6"]
-
+[editable path="YSort/Enemys/Bat6/Hurtbox"]
+[editable path="YSort/Enemys/Bat6/Hitbox"]
+[editable path="YSort/Enemys/Bat6/PlayerDetectionZone"]
+[editable path="YSort/Enemys/Bat6/SoftCollision"]
+[editable path="CanvasLayer/DialogueInterface"]
 [editable path="CaveEntrance"]
